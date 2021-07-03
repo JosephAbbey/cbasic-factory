@@ -1,0 +1,82 @@
+body {
+    font-family: Arial;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* The window */
+.container {
+    border: 3px solid #f1f1f1;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    position: absolute;
+    min-width: 500px;
+    min-height: 400px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 1.8fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        'title-bar title-bar title-bar'
+        'content content content'
+        'content content content';
+}
+.title-bar {
+    user-select: none;
+    cursor: pointer;
+    grid-area: title-bar;
+}
+.content {
+    background-color: white;
+    grid-area: content;
+}
+.terminalContainer {
+    height: 100% !important;
+}
+
+/* Container for columns and the top "toolbar" */
+.row {
+    padding: 10px;
+    background: #f1f1f1;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+    float: left;
+}
+
+.left {
+    width: 15%;
+}
+
+.right {
+    width: 10%;
+}
+
+.middle {
+    width: 75%;
+    text-align: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+/* Three dots */
+.dot {
+    margin-top: 4px;
+    margin-right: 4px;
+    height: 12px;
+    width: 12px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
