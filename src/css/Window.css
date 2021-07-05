@@ -6,12 +6,21 @@ body {
     box-sizing: border-box;
 }
 
+#WindowMenu {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
 /* The window */
 .container {
+    position: absolute;
+}
+.window {
+    position: absolute;
     border: 3px solid #f1f1f1;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    position: absolute;
     min-width: 500px;
     min-height: 400px;
 

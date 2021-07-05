@@ -5,12 +5,13 @@ type WindowProps = {
 };
 const Window: React.FunctionComponent<WindowProps> = ({ children, title }) => (
     <div
-        className="container"
+        className="window"
         onMouseDown={(el: React.BaseSyntheticEvent) => {
             var windowinstance = el.target;
-            while (windowinstance.className != 'container') {
+            while (windowinstance.className != 'window') {
                 windowinstance = windowinstance.parentElement;
             }
+            windowinstance = windowinstance.parentElement;
             try {
                 for (var e of windowinstance.parentElement.children) {
                     e.style.zIndex--;
@@ -20,13 +21,15 @@ const Window: React.FunctionComponent<WindowProps> = ({ children, title }) => (
         }}
         onMouseMove={(el: React.BaseSyntheticEvent) => {
             var windowinstance = el.target;
-            while (windowinstance.className != 'container') {
+            while (windowinstance.className != 'window') {
                 windowinstance = windowinstance.parentElement;
             }
             if (windowinstance.dragging) {
                 var x = parseInt(windowinstance.style.left) || 0,
                     y = parseInt(windowinstance.style.top) || 0,
+                    // @ts-ignore
                     mouseX = el.nativeEvent.clientX,
+                    // @ts-ignore
                     mouseY = el.nativeEvent.clientY;
 
                 windowinstance.style.left =
@@ -39,7 +42,7 @@ const Window: React.FunctionComponent<WindowProps> = ({ children, title }) => (
         }}
         onMouseUp={(el: React.BaseSyntheticEvent) => {
             var windowinstance = el.target;
-            while (windowinstance.className != 'container') {
+            while (windowinstance.className != 'window') {
                 windowinstance = windowinstance.parentElement;
             }
             windowinstance.dragging = false;
@@ -48,10 +51,12 @@ const Window: React.FunctionComponent<WindowProps> = ({ children, title }) => (
         <div
             onMouseDown={(el: React.BaseSyntheticEvent) => {
                 var windowinstance = el.target;
-                while (windowinstance.className != 'container') {
+                while (windowinstance.className != 'window') {
                     windowinstance = windowinstance.parentElement;
                 }
+                // @ts-ignore
                 windowinstance._startX = el.nativeEvent.clientX;
+                // @ts-ignore
                 windowinstance._startY = el.nativeEvent.clientY;
                 windowinstance.dragging = true;
             }}
@@ -62,10 +67,10 @@ const Window: React.FunctionComponent<WindowProps> = ({ children, title }) => (
                     className="dot"
                     onMouseDown={(el: React.BaseSyntheticEvent) => {
                         var windowinstance = el.target;
-                        while (windowinstance.className != 'container') {
+                        while (windowinstance.className != 'window') {
                             windowinstance = windowinstance.parentElement;
                         }
-                        windowinstance.remove();
+                        windowinstance.parentElement.remove();
                     }}
                     style={{ background: '#ED594A' }}
                 ></span>
